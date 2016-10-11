@@ -1,70 +1,48 @@
-var entries = [];
-var total = 0;
+$(document).ready(function(){
+var calculator
 
-var temp = '';
-$("button").on('click', function() {
- 	var val = $(this).text();
+var 1,2,3,4,5,6,7,8,9,0;
+function setValues()
+{
+1 = Number(document.getElementById("1").value);
+2 = Number(document.getElementById("2").value);
+3 = Number(document.getElementById("3").value);
+4 = Number(document.getElementById("4").value);
+5 = Number(document.getElementById("5").value);
+6 = Number(document.getElementById("6").value);
+7 = Number(document.getElementById("7").value);
+8 = Number(document.getElementById("8").value);
+9 = Number(document.getElementById("9").value);
+0 = Number(document.getElementById("0").value);
+}
 
-  // Got a number, add to temp
-  if (!isNaN(val) || val === '.') {
-    temp += val;
-    $("#answer").val(temp.substring(0,10));
+function AC(){
+  setValues();
+  result = a + b;
+}
+function CE(){
+  setValues();
+  result = a + b;
+}
+function div(){
+  setValues();
+  result = a / b;
+}
+function mult(){
+  setValues();
+  result = a * b;
+}
+function rest(){
+  setValues();
+  result = a - b;
+}
+function sum(){
+  setValues();
+  result = a + b;
+}
+function equals(){
+  setValues();
+  result = ;
+}
 
-  // Got some symbol other than equals, add temp to our entries
-  // then add our current symbol and clear temp
-  } else if (val === 'AC') {
-    entries = [];
-    temp = '';
-    total = 0;
-    $("#answer").val('')
-
-  // Clear last entry
-  } else if (val === 'CE') {
-    temp = '';
-    $("#answer").val('')
-
-  // Change multiply symbol to work with eval
-  } else if (val === 'x') {
-    entries.push(temp);
-    entries.push('*');
-    temp = '';
-
-  // Change divide symbol to work with eval
-  } else if (val === '÷') {
-    entries.push(temp);
-    entries.push('/');
-    temp = '';
-
-  // Got the equals sign, perform calculation
-  } else if (val === '=') {
-  	entries.push(temp);
-
-    var nt = Number(entries[0]);
-    for (var i = 1; i < entries.length; i++) {
-      var nextNum = Number(entries[i+1])
-      var symbol = entries[i];
-
-      if (symbol === '+') { nt += nextNum; }
-      else if (symbol === '-') { nt -= nextNum; }
-      else if (symbol === '*') { nt *= nextNum; }
-      else if (symbol === '/') { nt /= nextNum; }
-
-      i++;
-    }
-
-    // Swap the '-' symbol so text input handles it correctly
-    if (nt < 0) {
-      nt = Math.abs(nt) + '-';
-    }
-
-    $("#answer").val(nt);
-		entries = [];
-    temp = '';
-
-  // Push number
-  } else {
-    entries.push(temp);
-    entries.push(val);
-    temp = '';
-  }
 });
